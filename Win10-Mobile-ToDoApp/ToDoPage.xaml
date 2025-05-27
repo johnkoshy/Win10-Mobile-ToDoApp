@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="Win10_Mobile_ToDoApp.ToDoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Win10_Mobile_ToDoApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="TaskTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input Section -->
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBox x:Name="TaskInput" PlaceholderText="Enter a task" Width="300" Margin="0,0,0,10"/>
+            <Button x:Name="AddTaskButton" Content="Add Task" Click="AddTaskButton_Click" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <!-- Task List -->
+        <ListView x:Name="TaskListView" Grid.Row="1" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:ToDoItem">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{x:Bind IsCompleted, Mode=TwoWay}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Bind TaskName}" Style="{StaticResource TaskTextStyle}" VerticalAlignment="Center"/>
+                        <Button Content="Delete" Click="DeleteTaskButton_Click" Tag="{x:Bind TaskName}" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Adaptive UI for Mobile -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TaskInput.Width" Value="200"/>
+                        <Setter Target="TaskTextStyle.FontSize" Value="14"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
