@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Win10_Mobile_ToDoApp
 {
-    public class ToDoItem
+    public class TaskItem
     {
         public string TaskName { get; set; }
         public bool IsCompleted { get; set; }
@@ -14,7 +14,7 @@ namespace Win10_Mobile_ToDoApp
 
     public sealed partial class ToDoPage : Page
     {
-        private ObservableCollection<ToDoItem> Tasks = new ObservableCollection<ToDoItem>();
+        private ObservableCollection<TaskItem> Tasks = new ObservableCollection<TaskItem>();
 
         public ToDoPage()
         {
@@ -26,7 +26,7 @@ namespace Win10_Mobile_ToDoApp
         {
             if (!string.IsNullOrWhiteSpace(TaskInput.Text))
             {
-                Tasks.Add(new ToDoItem { TaskName = TaskInput.Text, IsCompleted = false });
+                Tasks.Add(new TaskItem { TaskName = TaskInput.Text, IsCompleted = false });
                 TaskInput.Text = string.Empty;
             }
         }
