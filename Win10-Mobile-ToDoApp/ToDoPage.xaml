@@ -217,8 +217,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="BorderThickness" Value="4"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <CompositeTransform/>
@@ -229,9 +228,8 @@
                     <ControlTemplate TargetType="ListViewItem">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="4" Margin="2">
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border BorderBrush="#FFFFFF" BorderThickness="2" Margin="2">
                                 <ContentPresenter/>
                             </Border>
                         </Border>
@@ -430,8 +428,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="BorderThickness" Value="4"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <CompositeTransform/>
@@ -442,9 +439,8 @@
                     <ControlTemplate TargetType="ListViewItem">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="4" Margin="2">
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border BorderBrush="#FFFFFF" BorderThickness="2" Margin="2">
                                 <ContentPresenter/>
                             </Border>
                         </Border>

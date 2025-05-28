@@ -96,12 +96,19 @@ namespace Win10_Mobile_ToDoApp
             {
                 this.RequestedTheme = ElementTheme.Dark;
                 ThemeToggleButton.Content = "Light Mode";
-                this.Style = Resources["ContainerStyleDark"] as Style;
-                TaskInput.Style = Resources["TextBoxStyleDark"] as Style;
-                AddTaskButton.Style = Resources["AddButtonStyleDark"] as Style;
-                ThemeToggleButton.Style = Resources["ThemeButtonStyleDark"] as Style;
-                TaskListView.Style = Resources["ListViewStyleDark"] as Style;
-                TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = Resources["ListViewItemStyleDark"] as Style };
+
+                if (Resources.TryGetValue("ContainerStyleDark", out var containerStyle) && containerStyle is Style)
+                    this.Style = (Style)containerStyle;
+                if (Resources.TryGetValue("TextBoxStyleDark", out var textBoxStyle) && textBoxStyle is Style)
+                    TaskInput.Style = (Style)textBoxStyle;
+                if (Resources.TryGetValue("AddButtonStyleDark", out var addButtonStyle) && addButtonStyle is Style)
+                    AddTaskButton.Style = (Style)addButtonStyle;
+                if (Resources.TryGetValue("ThemeButtonStyleDark", out var themeButtonStyle) && themeButtonStyle is Style)
+                    ThemeToggleButton.Style = (Style)themeButtonStyle;
+                if (Resources.TryGetValue("ListViewStyleDark", out var listViewStyle) && listViewStyle is Style)
+                    TaskListView.Style = (Style)listViewStyle;
+                if (Resources.TryGetValue("ListViewItemStyleDark", out var listViewItemStyle) && listViewItemStyle is Style)
+                    TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = (Style)listViewItemStyle };
 
                 foreach (var item in TaskListView.Items)
                 {
@@ -112,7 +119,8 @@ namespace Win10_Mobile_ToDoApp
                         var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
                         {
-                            textBlock.Style = Resources["TaskTextStyleDark"] as Style;
+                            if (Resources.TryGetValue("TaskTextStyleDark", out var textStyle) && textStyle is Style)
+                                textBlock.Style = (Style)textStyle;
                             textBlock.Foreground = new SolidColorBrush(Windows.UI.Colors.White); // Fallback
                             System.Diagnostics.Debug.WriteLine($"Applied TaskTextStyleDark to TextBlock: {textBlock.Text}");
                         }
@@ -120,10 +128,10 @@ namespace Win10_Mobile_ToDoApp
                         {
                             System.Diagnostics.Debug.WriteLine("Failed to find TextBlock in ListViewItem");
                         }
-                        if (deleteButton != null)
-                            deleteButton.Style = Resources["DeleteButtonStyleDark"];
-                        if (checkBox != null)
-                            checkBox.Style = Resources["CheckBoxStyleDark"];
+                        if (deleteButton != null && Resources.TryGetValue("DeleteButtonStyleDark", out var deleteStyle) && deleteStyle is Style)
+                            deleteButton.Style = (Style)deleteStyle;
+                        if (checkBox != null && Resources.TryGetValue("CheckBoxStyleDark", out var checkBoxStyle) && checkBoxStyle is Style)
+                            checkBox.Style = (Style)checkBoxStyle;
                         listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, true);
                         listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, true);
                     }
@@ -133,12 +141,19 @@ namespace Win10_Mobile_ToDoApp
             {
                 this.RequestedTheme = ElementTheme.Light;
                 ThemeToggleButton.Content = "Dark Mode";
-                this.Style = Resources["ContainerStyleLight"] as Style;
-                TaskInput.Style = Resources["TextBoxStyleLight"] as Style;
-                AddTaskButton.Style = Resources["AddButtonStyleLight"] as Style;
-                ThemeToggleButton.Style = Resources["ThemeButtonStyleLight"] as Style;
-                TaskListView.Style = Resources["ListViewStyleLight"] as Style;
-                TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = Resources["ListViewItemStyleLight"] as Style };
+
+                if (Resources.TryGetValue("ContainerStyleLight", out var containerStyle) && containerStyle is Style)
+                    this.Style = (Style)containerStyle;
+                if (Resources.TryGetValue("TextBoxStyleLight", out var textBoxStyle) && textBoxStyle is Style)
+                    TaskInput.Style = (Style)textBoxStyle;
+                if (Resources.TryGetValue("AddButtonStyleLight", out var addButtonStyle) && addButtonStyle is Style)
+                    AddTaskButton.Style = (Style)addButtonStyle;
+                if (Resources.TryGetValue("ThemeButtonStyleLight", out var themeButtonStyle) && themeButtonStyle is Style)
+                    ThemeToggleButton.Style = (Style)themeButtonStyle;
+                if (Resources.TryGetValue("ListViewStyleLight", out var listViewStyle) && listViewStyle is Style)
+                    TaskListView.Style = (Style)listViewStyle;
+                if (Resources.TryGetValue("ListViewItemStyleLight", out var listViewItemStyle) && listViewItemStyle is Style)
+                    TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = (Style)listViewItemStyle };
 
                 foreach (var item in TaskListView.Items)
                 {
@@ -149,7 +164,8 @@ namespace Win10_Mobile_ToDoApp
                         var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
                         {
-                            textBlock.Style = Resources["TaskTextStyleLight"] as Style;
+                            if (Resources.TryGetValue("TaskTextStyleLight", out var textStyle) && textStyle is Style)
+                                textBlock.Style = (Style)textStyle;
                             textBlock.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 51, 51, 51)); // Fallback
                             System.Diagnostics.Debug.WriteLine($"Applied TaskTextStyleLight to TextBlock: {textBlock.Text}");
                         }
@@ -157,10 +173,10 @@ namespace Win10_Mobile_ToDoApp
                         {
                             System.Diagnostics.Debug.WriteLine("Failed to find TextBlock in ListViewItem");
                         }
-                        if (deleteButton != null)
-                            deleteButton.Style = Resources["DeleteButtonStyleLight"];
-                        if (checkBox != null)
-                            checkBox.Style = Resources["CheckBoxStyleLight"];
+                        if (deleteButton != null && Resources.TryGetValue("DeleteButtonStyleLight", out var deleteStyle) && deleteStyle is Style)
+                            deleteButton.Style = (Style)deleteStyle;
+                        if (checkBox != null && Resources.TryGetValue("CheckBoxStyleLight", out var checkBoxStyle) && checkBoxStyle is Style)
+                            checkBox.Style = (Style)checkBoxStyle;
                         listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, false);
                         listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, false);
                     }
@@ -229,7 +245,7 @@ namespace Win10_Mobile_ToDoApp
 
         private void StartHoverAnimation(ListViewItem item, bool isDarkTheme)
         {
-            var storyboard = isDarkTheme ? Resources["HoverAnimation"] as Storyboard : Resources["HoverAnimationDark"] as Storyboard;
+            var storyboard = isDarkTheme ? Resources["HoverAnimationDark"] as Storyboard : Resources["HoverAnimation"] as Storyboard;
             Storyboard.SetTarget(storyboard, item);
             storyboard?.Begin();
         }
@@ -269,9 +285,16 @@ namespace Win10_Mobile_ToDoApp
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 var child = VisualTreeHelper.GetChild(parent, i);
-                if (child is T t && (name == null || (child is FrameworkElement fe && fe.Name == name)))
+                if (child is FrameworkElement fe && name != null && fe.Name == name)
                 {
-                    return t;
+                    if (child is T typedChild)
+                    {
+                        return typedChild;
+                    }
+                }
+                else if (child is T typedChild && name == null)
+                {
+                    return typedChild;
                 }
                 var result = FindVisualChild<T>(child, name);
                 if (result != null)
@@ -280,5 +303,4 @@ namespace Win10_Mobile_ToDoApp
             return null;
         }
     }
-
 }
