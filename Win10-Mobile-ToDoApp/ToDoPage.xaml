@@ -12,68 +12,61 @@
         <local:BoolToTextDecorationsConverter x:Key="Current"/>
         <!-- Animations -->
         <Storyboard x:Key="HoverAnimation">
-            <ColorAnimation Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+            <ColorAnimation Storyboard.TargetProperty="(Panel.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
                             To="#E0E0E0" Duration="0:0:0.2" EnableDependentAnimation="True"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                             To="-3" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             To="0.95" Duration="0:0:0.2"/>
         </Storyboard>
         <Storyboard x:Key="HoverAnimationDark">
-            <ColorAnimation Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
-                            To="#333333" Duration="0:0:0.2" EnableDependentAnimation="True"/>
+            <ColorAnimation Storyboard.TargetProperty="(Panel.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                            To="#444444" Duration="0:0:0.2" EnableDependentAnimation="True"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                             To="-3" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             To="0.95" Duration="0:0:0.2"/>
         </Storyboard>
         <!-- Light Theme Styles -->
         <Style x:Key="ContainerStyleLight" TargetType="Grid">
-            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#F5F5F5" Offset="0"/>
+                        <GradientStop Color="#E0E0E0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="TaskTextStyleLight" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#333333"/>
             <Setter Property="Margin" Value="5,0"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="ButtonInnerBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFFFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="2"/>
         </Style>
         <Style x:Key="AddButtonStyleLight" TargetType="Button">
-            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#4CAF50" Offset="0"/>
+                        <GradientStop Color="#388E3C" Offset="0.6"/>
+                        <GradientStop Color="#4CAF50" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#0078D7"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Margin" Value="0,10,10,0"/>
-            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="10,5"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="DeleteButtonStyleLight" TargetType="Button">
-            <Setter Property="Background" Value="#D83B01"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#D83B01"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="TextBoxStyleLight" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="#333333"/>
-            <Setter Property="BorderBrush" Value="#CCCCCC"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="Padding" Value="8"/>
-        </Style>
-        <Style x:Key="ListViewStyleLight" TargetType="ListView">
-            <Setter Property="Background" Value="#FAFAFA"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        <Style x:Key="ThemeButtonStyleLight" TargetType="Button">
-            <Setter Property="Background" Value="#606060"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#606060"/>
-            <Setter Property="Margin" Value="0,10,0,0"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -81,83 +74,212 @@
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                              Content="{TemplateBinding Content}"
-                                              Foreground="{TemplateBinding Foreground}"/>
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DeleteButtonStyleLight" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#F44336" Offset="0"/>
+                        <GradientStop Color="#D32F2F" Offset="0.6"/>
+                        <GradientStop Color="#F44336" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyleLight" TargetType="TextBox">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFFFFF" Offset="0"/>
+                        <GradientStop Color="#F5F5F5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC" Offset="0"/>
+                        <GradientStop Color="#AAAAAA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+        <Style x:Key="ListViewStyleLight" TargetType="ListView">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FAFAFA" Offset="0"/>
+                        <GradientStop Color="#E0E0E0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC" Offset="0"/>
+                        <GradientStop Color="#AAAAAA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+        <Style x:Key="ThemeButtonStyleLight" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#757575" Offset="0"/>
+                        <GradientStop Color="#616161" Offset="0.6"/>
+                        <GradientStop Color="#757575" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="ListViewItemStyleLight" TargetType="ListViewItem">
-            <Setter Property="Background" Value="#FAFAFA"/>
-            <Setter Property="Margin" Value="0,0,0,2"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFFFFF" Offset="0"/>
+                        <GradientStop Color="#F5F5F5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#CCCCCC" Offset="0"/>
+                        <GradientStop Color="#AAAAAA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="4" Margin="2">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="CheckBoxStyleLight" TargetType="CheckBox">
             <Setter Property="Foreground" Value="#333333"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="Padding" Value="5"/>
         </Style>
         <!-- Dark Theme Styles -->
         <Style x:Key="ContainerStyleDark" TargetType="Grid">
-            <Setter Property="Background" Value="#1F1F1F"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#2C2C2C" Offset="0"/>
+                        <GradientStop Color="#1F1F1F" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="TaskTextStyleDark" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="Margin" Value="5,0"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="AddButtonStyleDark" TargetType="Button">
-            <Setter Property="Background" Value="#005EA6"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#0288D1" Offset="0"/>
+                        <GradientStop Color="#0277BD" Offset="0.6"/>
+                        <GradientStop Color="#0288D1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#005EA6"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Margin" Value="0,10,10,0"/>
-            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="10,5"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="DeleteButtonStyleDark" TargetType="Button">
-            <Setter Property="Background" Value="#B33101"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#B33101"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="TextBoxStyleDark" TargetType="TextBox">
-            <Setter Property="Background" Value="#333333"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#555555"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="Padding" Value="8"/>
-        </Style>
-        <Style x:Key="ListViewStyleDark" TargetType="ListView">
-            <Setter Property="Background" Value="#1F1F1F"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        <Style x:Key="ThemeButtonStyleDark" TargetType="Button">
-            <Setter Property="Background" Value="#404040"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#404040"/>
-            <Setter Property="Margin" Value="0,10,0,0"/>
-            <Setter Property="CornerRadius" Value="4"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -165,27 +287,176 @@
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                              Content="{TemplateBinding Content}"
-                                              Foreground="{TemplateBinding Foreground}"/>
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DeleteButtonStyleDark" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#D81B60" Offset="0"/>
+                        <GradientStop Color="#C2185B" Offset="0.6"/>
+                        <GradientStop Color="#D81B60" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyleDark" TargetType="TextBox">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#333333" Offset="0"/>
+                        <GradientStop Color="#2C2C2C" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#555555" Offset="0"/>
+                        <GradientStop Color="#444444" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+        <Style x:Key="ListViewStyleDark" TargetType="ListView">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#2C2C2C" Offset="0"/>
+                        <GradientStop Color="#1F1F1F" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#555555" Offset="0"/>
+                        <GradientStop Color="#444444" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+        <Style x:Key="ThemeButtonStyleDark" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#424242" Offset="0"/>
+                        <GradientStop Color="#212121" Offset="0.6"/>
+                        <GradientStop Color="#424242" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform CenterX="0.5" CenterY="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Style="{StaticResource ButtonInnerBorderStyle}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"
+                                                  Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="ListViewItemStyleDark" TargetType="ListViewItem">
-            <Setter Property="Background" Value="#1F1F1F"/>
-            <Setter Property="Margin" Value="0,0,0,2"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderBrush" Value="#333333"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#333333" Offset="0"/>
+                        <GradientStop Color="#2C2C2C" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#555555" Offset="0"/>
+                        <GradientStop Color="#444444" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <CompositeTransform/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="4" Margin="2">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="CheckBoxStyleDark" TargetType="CheckBox">
             <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="Padding" Value="5"/>
         </Style>
     </Page.Resources>
 
