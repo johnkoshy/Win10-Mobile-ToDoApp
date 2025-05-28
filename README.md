@@ -8,7 +8,7 @@ Delete tasks with a button.
 Adaptive design for Windows 10 Mobile screens.
 
 Screenshots
-![App Screenshot](Win10-Mobile-ToDoApp/assets/screenshot.png)
+![App Screenshot](Win10-Mobile-ToDoApp/Assets/screenshot.png)
 
 Requirements
 
