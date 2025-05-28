@@ -5,26 +5,146 @@
     xmlns:local="using:Win10_Mobile_ToDoApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    RequestedTheme="Light">
 
-    <Grid>
+    <Page.Resources>
+        <local:BoolToTextDecorationsConverter x:Key="BoolToTextDecorationsConverter"/>
+        <!-- Light Theme Styles -->
+        <Style x:Key="ContainerStyleLight" TargetType="Grid">
+            <Setter Property="Background" Value="#FAFAFA"/>
+        </Style>
+        <Style x:Key="TaskTextStyleLight" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+        <Style x:Key="AddButtonStyleLight" TargetType="Button">
+            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#0078D7"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+        </Style>
+        <Style x:Key="DeleteButtonStyleLight" TargetType="Button">
+            <Setter Property="Background" Value="#D83B01"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D83B01"/>
+        </Style>
+        <Style x:Key="TextBoxStyleLight" TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+        <Style x:Key="ListViewStyleLight" TargetType="ListView">
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="ThemeButtonStyleLight" TargetType="Button">
+            <Setter Property="Background" Value="#606060"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#606060"/>
+            <Setter Property="Margin" Value="10,10,0,0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"
+                                              Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ListViewItemStyleLight" TargetType="ListViewItem">
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <!-- Dark Theme Styles -->
+        <Style x:Key="ContainerStyleDark" TargetType="Grid">
+            <Setter Property="Background" Value="#1F1F1F"/>
+        </Style>
+        <Style x:Key="TaskTextStyleDark" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+        <Style x:Key="AddButtonStyleDark" TargetType="Button">
+            <Setter Property="Background" Value="#005EA6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005EA6"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+        </Style>
+        <Style x:Key="DeleteButtonStyleDark" TargetType="Button">
+            <Setter Property="Background" Value="#B33101"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#B33101"/>
+        </Style>
+        <Style x:Key="TextBoxStyleDark" TargetType="TextBox">
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#555555"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+        <Style x:Key="ListViewStyleDark" TargetType="ListView">
+            <Setter Property="Background" Value="#1F1F1F"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="ThemeButtonStyleDark" TargetType="Button">
+            <Setter Property="Background" Value="#404040"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#404040"/>
+            <Setter Property="Margin" Value="10,10,0,0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"
+                                              Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ListViewItemStyleDark" TargetType="ListViewItem">
+            <Setter Property="Background" Value="#1F1F1F"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Style="{StaticResource ContainerStyleLight}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="10">
-            <TextBox x:Name="TaskInput" PlaceholderText="Enter a task" Margin="0,0,0,10"/>
-            <Button x:Name="AddTaskButton" Content="Add Task" Click="AddTaskButton_Click"/>
+        <StackPanel Grid.Row="0" Margin="10" Background="Transparent">
+            <TextBox x:Name="TaskInput" PlaceholderText="Enter a task" Style="{StaticResource TextBoxStyleLight}"/>
+            <StackPanel Orientation="Horizontal" Background="Transparent">
+                <Button x:Name="AddTaskButton" Content="Add Task" Click="AddTaskButton_Click" Style="{StaticResource AddButtonStyleLight}"/>
+                <Button x:Name="ThemeToggleButton" Content="Dark Mode" Click="ThemeToggleButton_Click" Style="{StaticResource ThemeButtonStyleLight}"/>
+            </StackPanel>
         </StackPanel>
 
-        <ListView x:Name="TaskListView" Grid.Row="1" Margin="10">
+        <ListView x:Name="TaskListView" Grid.Row="1" Style="{StaticResource ListViewStyleLight}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemStyleLight}"/>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:TaskItem">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{x:Bind IsCompleted, Mode=TwoWay}"/>
-                        <TextBlock Text="{x:Bind TaskName}" Margin="5,0"/>
-                        <Button Content="Delete" Tag="{x:Bind TaskName}" Click="DeleteTaskButton_Click"/>
+                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}"/>
+                        <TextBlock Text="{x:Bind TaskName}" Style="{StaticResource TaskTextStyleLight}"
+                                   TextDecorations="{Binding IsCompleted, Converter={StaticResource BoolToTextDecorationsConverter}, Mode=OneWay}"/>
+                        <Button Content="Delete" Tag="{x:Bind TaskName}" Click="DeleteTaskButton_Click" Style="{StaticResource DeleteButtonStyleLight}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
