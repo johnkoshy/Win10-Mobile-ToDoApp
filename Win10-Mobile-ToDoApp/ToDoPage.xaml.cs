@@ -7,7 +7,9 @@ using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Win10_Mobile_ToDoApp
 {
@@ -113,6 +115,8 @@ namespace Win10_Mobile_ToDoApp
                             deleteButton.Style = Resources["DeleteButtonStyleDark"] as Style;
                         if (checkBox != null)
                             checkBox.Style = Resources["CheckBoxStyleDark"] as Style;
+                        listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, true);
+                        listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, true);
                     }
                 }
             }
@@ -139,6 +143,8 @@ namespace Win10_Mobile_ToDoApp
                             deleteButton.Style = Resources["DeleteButtonStyleLight"] as Style;
                         if (checkBox != null)
                             checkBox.Style = Resources["CheckBoxStyleLight"] as Style;
+                        listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, false);
+                        listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, false);
                     }
                 }
             }
@@ -158,6 +164,52 @@ namespace Win10_Mobile_ToDoApp
                     }
                 }
             }
+        }
+
+        private void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (sender is Button button && button.RenderTransform is ScaleTransform transform)
+            {
+                var storyboard = new Storyboard();
+                var scaleX = new DoubleAnimation { To = 0.95, Duration = TimeSpan.FromMilliseconds(100) };
+                var scaleY = new DoubleAnimation { To = 0.95, Duration = TimeSpan.FromMilliseconds(100) };
+                Storyboard.SetTarget(scaleX, transform);
+                Storyboard.SetTarget(scaleY, transform);
+                Storyboard.SetTargetProperty(scaleX, "ScaleX");
+                Storyboard.SetTargetProperty(scaleY, "ScaleY");
+                storyboard.Children.Add(scaleX);
+                storyboard.Children.Add(scaleY);
+                storyboard.Begin();
+            }
+        }
+
+        private void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (sender is Button button && button.RenderTransform is ScaleTransform transform)
+            {
+                var storyboard = new Storyboard();
+                var scaleX = new DoubleAnimation { To = 1.0, Duration = TimeSpan.FromMilliseconds(100) };
+                var scaleY = new DoubleAnimation { To = 1.0, Duration = TimeSpan.FromMilliseconds(100) };
+                Storyboard.SetTarget(scaleX, transform);
+                Storyboard.SetTarget(scaleY, transform);
+                Storyboard.SetTargetProperty(scaleX, "ScaleX");
+                Storyboard.SetTargetProperty(scaleY, "ScaleY");
+                storyboard.Children.Add(scaleX);
+                storyboard.Children.Add(scaleY);
+                storyboard.Begin();
+            }
+        }
+
+        private void StartHoverAnimation(ListViewItem item, bool isDarkTheme)
+        {
+            var storyboard = isDarkTheme ? Resources["HoverAnimationDark"] as Storyboard : Resources["HoverAnimation"] as Storyboard;
+            Storyboard.SetTarget(storyboard, item);
+            storyboard?.Begin();
+        }
+
+        private void ResetBackground(ListViewItem item, bool isDarkTheme)
+        {
+            item.Background = new SolidColorBrush(isDarkTheme ? Windows.UI.Colors.Black : Windows.UI.Color.FromArgb(255, 250, 250, 250));
         }
 
         private T FindVisualChild<T>(DependencyObject parent, string name = null) where T : DependencyObject
