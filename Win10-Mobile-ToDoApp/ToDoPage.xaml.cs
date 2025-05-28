@@ -106,10 +106,13 @@ namespace Win10_Mobile_ToDoApp
                     {
                         var textBlock = FindVisualChild<TextBlock>(listViewItem);
                         var deleteButton = FindVisualChild<Button>(listViewItem, "Delete");
+                        var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
                             textBlock.Style = Resources["TaskTextStyleDark"] as Style;
                         if (deleteButton != null)
                             deleteButton.Style = Resources["DeleteButtonStyleDark"] as Style;
+                        if (checkBox != null)
+                            checkBox.Style = Resources["CheckBoxStyleDark"] as Style;
                     }
                 }
             }
@@ -129,10 +132,29 @@ namespace Win10_Mobile_ToDoApp
                     {
                         var textBlock = FindVisualChild<TextBlock>(listViewItem);
                         var deleteButton = FindVisualChild<Button>(listViewItem, "Delete");
+                        var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
                             textBlock.Style = Resources["TaskTextStyleLight"] as Style;
                         if (deleteButton != null)
                             deleteButton.Style = Resources["DeleteButtonStyleLight"] as Style;
+                        if (checkBox != null)
+                            checkBox.Style = Resources["CheckBoxStyleLight"] as Style;
+                    }
+                }
+            }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is TaskItem task)
+            {
+                task.IsCompleted = checkBox.IsChecked ?? false;
+                if (TaskListView.ContainerFromItem(task) is ListViewItem listViewItem)
+                {
+                    var textBlock = FindVisualChild<TextBlock>(listViewItem);
+                    if (textBlock != null)
+                    {
+                        textBlock.TextDecorations = task.IsCompleted ? TextDecorations.Strikethrough : TextDecorations.None;
                     }
                 }
             }

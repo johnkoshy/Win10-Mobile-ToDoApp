@@ -64,12 +64,16 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
         </Style>
+        <Style x:Key="CheckBoxStyleLight" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
         <!-- Dark Theme Styles -->
         <Style x:Key="ContainerStyleDark" TargetType="Grid">
             <Setter Property="Background" Value="#1F1F1F"/>
         </Style>
         <Style x:Key="TaskTextStyleDark" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="Margin" Value="5,0"/>
         </Style>
         <Style x:Key="AddButtonStyleDark" TargetType="Button">
@@ -85,7 +89,7 @@
         </Style>
         <Style x:Key="TextBoxStyleDark" TargetType="TextBox">
             <Setter Property="Background" Value="#333333"/>
-            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="BorderBrush" Value="#555555"/>
             <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
@@ -95,7 +99,7 @@
         </Style>
         <Style x:Key="ThemeButtonStyleDark" TargetType="Button">
             <Setter Property="Background" Value="#404040"/>
-            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
             <Setter Property="BorderBrush" Value="#404040"/>
             <Setter Property="Margin" Value="10,10,0,0"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -117,6 +121,10 @@
             <Setter Property="Background" Value="#1F1F1F"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style x:Key="CheckBoxStyleDark" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </Page.Resources>
 
@@ -141,7 +149,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:TaskItem">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}"/>
+                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Click="CheckBox_Click" Style="{StaticResource CheckBoxStyleLight}"/>
                         <TextBlock Text="{x:Bind TaskName}" Style="{StaticResource TaskTextStyleLight}"
                                    TextDecorations="{Binding IsCompleted, Converter={StaticResource BoolToTextDecorationsConverter}, Mode=OneWay}"/>
                         <Button Content="Delete" Tag="{x:Bind TaskName}" Click="DeleteTaskButton_Click" Style="{StaticResource DeleteButtonStyleLight}"/>
