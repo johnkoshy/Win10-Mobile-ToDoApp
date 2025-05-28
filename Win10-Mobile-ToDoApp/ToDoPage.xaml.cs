@@ -102,6 +102,7 @@ namespace Win10_Mobile_ToDoApp
                 ThemeToggleButton.Style = Resources["ThemeButtonStyleDark"] as Style;
                 TaskListView.Style = Resources["ListViewStyleDark"] as Style;
                 TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = Resources["ListViewItemStyleDark"] as Style };
+
                 foreach (var item in TaskListView.Items)
                 {
                     if (TaskListView.ContainerFromItem(item) is ListViewItem listViewItem)
@@ -110,11 +111,19 @@ namespace Win10_Mobile_ToDoApp
                         var deleteButton = FindVisualChild<Button>(listViewItem, "Delete");
                         var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
+                        {
                             textBlock.Style = Resources["TaskTextStyleDark"] as Style;
+                            textBlock.Foreground = new SolidColorBrush(Windows.UI.Colors.White); // Fallback
+                            System.Diagnostics.Debug.WriteLine($"Applied TaskTextStyleDark to TextBlock: {textBlock.Text}");
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Failed to find TextBlock in ListViewItem");
+                        }
                         if (deleteButton != null)
-                            deleteButton.Style = Resources["DeleteButtonStyleDark"] as Style;
+                            deleteButton.Style = Resources["DeleteButtonStyleDark"];
                         if (checkBox != null)
-                            checkBox.Style = Resources["CheckBoxStyleDark"] as Style;
+                            checkBox.Style = Resources["CheckBoxStyleDark"];
                         listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, true);
                         listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, true);
                     }
@@ -130,6 +139,7 @@ namespace Win10_Mobile_ToDoApp
                 ThemeToggleButton.Style = Resources["ThemeButtonStyleLight"] as Style;
                 TaskListView.Style = Resources["ListViewStyleLight"] as Style;
                 TaskListView.ItemContainerStyle = new Style { TargetType = typeof(ListViewItem), BasedOn = Resources["ListViewItemStyleLight"] as Style };
+
                 foreach (var item in TaskListView.Items)
                 {
                     if (TaskListView.ContainerFromItem(item) is ListViewItem listViewItem)
@@ -138,11 +148,19 @@ namespace Win10_Mobile_ToDoApp
                         var deleteButton = FindVisualChild<Button>(listViewItem, "Delete");
                         var checkBox = FindVisualChild<CheckBox>(listViewItem);
                         if (textBlock != null)
+                        {
                             textBlock.Style = Resources["TaskTextStyleLight"] as Style;
+                            textBlock.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 51, 51, 51)); // Fallback
+                            System.Diagnostics.Debug.WriteLine($"Applied TaskTextStyleLight to TextBlock: {textBlock.Text}");
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Failed to find TextBlock in ListViewItem");
+                        }
                         if (deleteButton != null)
-                            deleteButton.Style = Resources["DeleteButtonStyleLight"] as Style;
+                            deleteButton.Style = Resources["DeleteButtonStyleLight"];
                         if (checkBox != null)
-                            checkBox.Style = Resources["CheckBoxStyleLight"] as Style;
+                            checkBox.Style = Resources["CheckBoxStyleLight"];
                         listViewItem.PointerEntered += (s, args) => StartHoverAnimation(listViewItem, false);
                         listViewItem.PointerExited += (s, args) => ResetBackground(listViewItem, false);
                     }
@@ -168,66 +186,99 @@ namespace Win10_Mobile_ToDoApp
 
         private void Button_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            if (sender is Button button && button.RenderTransform is ScaleTransform transform)
+            if (sender is Button button && button.RenderTransform is CompositeTransform transform)
             {
+                System.Diagnostics.Debug.WriteLine($"Button pressed: {button.Content}");
                 var storyboard = new Storyboard();
-                var scaleX = new DoubleAnimation { To = 0.95, Duration = TimeSpan.FromMilliseconds(100) };
-                var scaleY = new DoubleAnimation { To = 0.95, Duration = TimeSpan.FromMilliseconds(100) };
+                var scaleX = new DoubleAnimation { To = 0.9, Duration = TimeSpan.FromMilliseconds(100) };
+                var scaleY = new DoubleAnimation { To = 0.9, Duration = TimeSpan.FromMilliseconds(100) };
+                var opacity = new DoubleAnimation { To = 0.7, Duration = TimeSpan.FromMilliseconds(100) };
                 Storyboard.SetTarget(scaleX, transform);
                 Storyboard.SetTarget(scaleY, transform);
+                Storyboard.SetTarget(opacity, button);
                 Storyboard.SetTargetProperty(scaleX, "ScaleX");
                 Storyboard.SetTargetProperty(scaleY, "ScaleY");
+                Storyboard.SetTargetProperty(opacity, "Opacity");
                 storyboard.Children.Add(scaleX);
                 storyboard.Children.Add(scaleY);
+                storyboard.Children.Add(opacity);
                 storyboard.Begin();
             }
         }
 
         private void Button_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            if (sender is Button button && button.RenderTransform is ScaleTransform transform)
+            if (sender is Button button && button.RenderTransform is CompositeTransform transform)
             {
                 var storyboard = new Storyboard();
                 var scaleX = new DoubleAnimation { To = 1.0, Duration = TimeSpan.FromMilliseconds(100) };
                 var scaleY = new DoubleAnimation { To = 1.0, Duration = TimeSpan.FromMilliseconds(100) };
+                var opacity = new DoubleAnimation { To = 1.0, Duration = TimeSpan.FromMilliseconds(100) };
                 Storyboard.SetTarget(scaleX, transform);
                 Storyboard.SetTarget(scaleY, transform);
+                Storyboard.SetTarget(opacity, button);
                 Storyboard.SetTargetProperty(scaleX, "ScaleX");
                 Storyboard.SetTargetProperty(scaleY, "ScaleY");
+                Storyboard.SetTargetProperty(opacity, "Opacity");
                 storyboard.Children.Add(scaleX);
                 storyboard.Children.Add(scaleY);
+                storyboard.Children.Add(opacity);
                 storyboard.Begin();
             }
         }
 
         private void StartHoverAnimation(ListViewItem item, bool isDarkTheme)
         {
-            var storyboard = isDarkTheme ? Resources["HoverAnimationDark"] as Storyboard : Resources["HoverAnimation"] as Storyboard;
+            var storyboard = isDarkTheme ? Resources["HoverAnimation"] as Storyboard : Resources["HoverAnimationDark"] as Storyboard;
             Storyboard.SetTarget(storyboard, item);
             storyboard?.Begin();
         }
 
         private void ResetBackground(ListViewItem item, bool isDarkTheme)
         {
-            item.Background = new SolidColorBrush(isDarkTheme ? Windows.UI.Colors.Black : Windows.UI.Color.FromArgb(255, 250, 250, 250));
+            item.Background = isDarkTheme
+                ? new LinearGradientBrush
+                {
+                    StartPoint = new Windows.Foundation.Point(0, 0),
+                    EndPoint = new Windows.Foundation.Point(0, 1),
+                    GradientStops = new GradientStopCollection
+                    {
+                        new GradientStop { Color = Windows.UI.Color.FromArgb(255, 51, 51, 51), Offset = 0 },
+                        new GradientStop { Color = Windows.UI.Color.FromArgb(255, 44, 44, 44), Offset = 1 }
+                    }
+                }
+                : new LinearGradientBrush
+                {
+                    StartPoint = new Windows.Foundation.Point(0, 0),
+                    EndPoint = new Windows.Foundation.Point(0, 1),
+                    GradientStops = new GradientStopCollection
+                    {
+                        new GradientStop { Color = Windows.UI.Colors.White, Offset = 0 },
+                        new GradientStop { Color = Windows.UI.Color.FromArgb(255, 245, 245, 245), Offset = 1 }
+                    }
+                };
+            item.Opacity = 1.0;
+            if (item.RenderTransform is CompositeTransform transform)
+            {
+                transform.TranslateY = 0;
+            }
         }
 
-        private T FindVisualChild<T>(DependencyObject parent, string name = null) where T : DependencyObject
+        private T FindVisualChild<T>(DependencyObject parent, string name = null) where T : class
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 var child = VisualTreeHelper.GetChild(parent, i);
-                T target = null;
                 if (child is T t && (name == null || (child is FrameworkElement fe && fe.Name == name)))
                 {
-                    target = t;
-                    return target;
+                    return t;
                 }
-                target = FindVisualChild<T>(child, name);
-                if (target != null)
-                    return target;
+                var result = FindVisualChild<T>(child, name);
+                if (result != null)
+                    return result;
             }
             return null;
         }
     }
+
 }

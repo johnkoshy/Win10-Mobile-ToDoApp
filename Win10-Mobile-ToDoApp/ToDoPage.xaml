@@ -491,10 +491,14 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:TaskItem">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Click="CheckBox_Click" Style="{StaticResource CheckBoxStyleLight}"/>
-                        <TextBlock Text="{x:Bind TaskName}" Style="{StaticResource TaskTextStyleLight}"
+                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Click="CheckBox_Click" 
+                                  Style="{StaticResource CheckBoxStyleLight}"/>
+                        <TextBlock Text="{Binding TaskName}" 
+                                   Foreground="{Binding IsCompleted, Converter={StaticResource Current}, Mode=OneWay}" 
+                                   Style="{StaticResource TaskTextStyleLight}"
                                    TextDecorations="{Binding IsCompleted, Converter={StaticResource Current}, Mode=OneWay}"/>
-                        <Button Content="Delete" Tag="{x:Bind TaskName}" Click="DeleteTaskButton_Click" Style="{StaticResource DeleteButtonStyleLight}"
+                        <Button Content="Delete" Tag="{Binding TaskName}" Click="DeleteTaskButton_Click" 
+                                Style="{StaticResource DeleteButtonStyleLight}"
                                 PointerPressed="Button_PointerPressed" PointerReleased="Button_PointerReleased"/>
                     </StackPanel>
                 </DataTemplate>
