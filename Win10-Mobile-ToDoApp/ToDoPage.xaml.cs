@@ -282,23 +282,32 @@ namespace Win10_Mobile_ToDoApp
 
         private T FindVisualChild<T>(DependencyObject parent, string name = null) where T : class
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            int childCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childCount; i++)
             {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                if (child is FrameworkElement fe && name != null && fe.Name == name)
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+
+                // Check if child is of type T
+                if (typeof(T).IsAssignableFrom(child.GetType()))
                 {
-                    if (child is T typedChild)
+                    // If name is specified, check FrameworkElement name
+                    if (name != null && child is FrameworkElement fe && fe.Name == name)
                     {
-                        return typedChild;
+                        return child as T;
+                    }
+                    // If no name specified, return the child
+                    else if (name == null)
+                    {
+                        return child as T;
                     }
                 }
-                else if (child is T typedChild && name == null)
-                {
-                    return typedChild;
-                }
-                var result = FindVisualChild<T>(child, name);
+
+                // Recursively search children
+                T result = FindVisualChild<T>(child, name);
                 if (result != null)
+                {
                     return result;
+                }
             }
             return null;
         }
