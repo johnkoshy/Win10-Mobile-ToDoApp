@@ -287,8 +287,8 @@ namespace Win10_Mobile_ToDoApp
             {
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
 
-                // Check if child is of type T
-                if (typeof(T).IsAssignableFrom(child.GetType()))
+                // Check if child matches type T
+                if (child.GetType() == typeof(T))
                 {
                     // If name is specified, check FrameworkElement name
                     if (name != null && child is FrameworkElement fe && fe.Name == name)
