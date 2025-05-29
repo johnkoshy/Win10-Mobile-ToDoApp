@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -10,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Newtonsoft.Json;
 
 namespace Win10_Mobile_ToDoApp
 {
@@ -64,33 +67,86 @@ namespace Win10_Mobile_ToDoApp
     public sealed partial class ToDoPage : Page
     {
         private ObservableCollection<TaskItem> Tasks = new ObservableCollection<TaskItem>();
+        private const string TasksFileName = "tasks.json";
 
         public ToDoPage()
         {
             this.InitializeComponent();
             TaskListView.ItemsSource = Tasks;
+            Loaded += ToDoPage_Loaded;
         }
 
-        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        private async void ToDoPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadTasksAsync();
+        }
+
+        private async Task LoadTasksAsync()
+        {
+            try
+            {
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                if (await localFolder.TryGetItemAsync(TasksFileName) is StorageFile file)
+                {
+                    string json = await FileIO.ReadTextAsync(file);
+                    var loadedTasks = JsonConvert.DeserializeObject<ObservableCollection<TaskItem>>(json);
+                    if (loadedTasks != null)
+                    {
+                        Tasks.Clear();
+                        foreach (var task in loadedTasks)
+                        {
+                            Tasks.Add(task);
+                        }
+                        System.Diagnostics.Debug.WriteLine($"Loaded {Tasks.Count} tasks from {TasksFileName}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading tasks: {ex.Message}");
+            }
+        }
+
+        private async Task SaveTasksAsync()
+        {
+            try
+            {
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile file = await localFolder.CreateFileAsync(TasksFileName, CreationCollisionOption.ReplaceExisting);
+                string json = JsonConvert.SerializeObject(Tasks);
+                await FileIO.WriteTextAsync(file, json);
+                System.Diagnostics.Debug.WriteLine($"Saved {Tasks.Count} tasks to {TasksFileName}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving tasks: {ex.Message}");
+            }
+        }
+
+        private async void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TaskInput.Text))
             {
                 Tasks.Add(new TaskItem { TaskName = TaskInput.Text, IsCompleted = false });
                 TaskInput.Text = string.Empty;
+                await SaveTasksAsync();
             }
         }
 
-        private void DeleteTaskButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteTaskButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.Tag is string taskName)
             {
                 var task = Tasks.FirstOrDefault(t => t.TaskName == taskName);
                 if (task != null)
+                {
                     Tasks.Remove(task);
+                    await SaveTasksAsync();
+                }
             }
         }
 
-        private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+        private async void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.RequestedTheme == ElementTheme.Light)
             {
@@ -184,7 +240,7 @@ namespace Win10_Mobile_ToDoApp
             }
         }
 
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        private async void CheckBox_Click(object sender, RoutedEventArgs e)
         {
             if (sender is CheckBox checkBox && checkBox.DataContext is TaskItem task)
             {
@@ -197,6 +253,7 @@ namespace Win10_Mobile_ToDoApp
                         textBlock.TextDecorations = task.IsCompleted ? TextDecorations.Strikethrough : TextDecorations.None;
                     }
                 }
+                await SaveTasksAsync();
             }
         }
 
