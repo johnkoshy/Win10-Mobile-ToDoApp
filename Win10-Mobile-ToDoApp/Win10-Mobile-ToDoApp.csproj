@@ -2,6 +2,8 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+<TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+<TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{DB813C11-6742-494C-BD42-7BBCCFEA1154}</ProjectGuid>
@@ -116,6 +118,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+<Reference Include="Newtonsoft.Json">
+    <HintPath>Lib\Newtonsoft.Json.dll</HintPath>
+  </Reference>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
