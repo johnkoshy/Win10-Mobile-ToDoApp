@@ -1,0 +1,1 @@
+C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp.csproj;x86
