@@ -4,9 +4,11 @@
       xmlns:local="using:Win10_Mobile_ToDoApp"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:Windows.UI.Xaml.Controls"
       mc:Ignorable="d">
     <Page.Resources>
         <local:BoolToTextDecorationsConverter x:Key="BoolToTextDecorationsConverter"/>
+        <controls:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style x:Key="TaskTextStyleLight" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#333333"/>
         </Style>
@@ -14,10 +16,17 @@
             <Setter Property="Foreground" Value="#FFFFFF"/>
         </Style>
         <Style x:Key="AddButtonStyleDark" TargetType="Button">
-            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#666666" Offset="0"/>
+                        <GradientStop Color="#333333" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#555555"/>
-            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#888888"/>
+            <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
@@ -37,11 +46,18 @@
                     <DataTemplate x:DataType="local:TaskItem">
                         <StackPanel Orientation="Horizontal" Margin="0,5">
                             <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Click="CheckBox_Click"/>
-                            <TextBlock x:Name="TaskTextBlock"
-                                       Text="{Binding TaskName}"
-                                       Style="{StaticResource TaskTextStyleLight}"
-                                       TextDecorations="{Binding IsCompleted, Converter={StaticResource BoolToTextDecorationsConverter}, Mode=OneWay}"
-                                       Margin="10,0"/>
+                            <Grid>
+                                <TextBlock x:Name="TaskTextBlock"
+                                           Text="{Binding TaskName}"
+                                           Style="{StaticResource TaskTextStyleLight}"
+                                           Margin="10,0"/>
+                                <Line x:Name="StrikeThroughLine"
+                                      X1="0" X2="1000" Y1="10" Y2="10"
+                                      Stroke="Red"
+                                      StrokeThickness="2"
+                                      Visibility="{Binding IsCompleted, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Margin="10,0"/>
+                            </Grid>
                             <Button x:Name="Delete" Tag="{Binding TaskName}" Click="DeleteTaskButton_Click" Content="Delete" Style="{StaticResource AddButtonStyleDark}"/>
                         </StackPanel>
                     </DataTemplate>

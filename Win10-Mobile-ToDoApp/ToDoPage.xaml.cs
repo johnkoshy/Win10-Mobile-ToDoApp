@@ -40,7 +40,7 @@ namespace Win10_Mobile_ToDoApp
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value is bool && (bool)value) ? TextDecorations.Strikethrough : TextDecorations.None;
+            return (value is bool && (bool)value) ? Windows.UI.Text.TextDecorations.Strikethrough : Windows.UI.Text.TextDecorations.None;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
