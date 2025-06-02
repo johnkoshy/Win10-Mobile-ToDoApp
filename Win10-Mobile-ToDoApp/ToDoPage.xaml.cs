@@ -11,31 +11,18 @@ using System.Linq;
 
 namespace Win10_Mobile_ToDoApp
 {
-    public class TaskItem : INotifyPropertyChanged
+    public class CustomBooleanToVisibilityConverter : IValueConverter
     {
-        private string _taskName;
-        private bool _isCompleted;
-
-        public string TaskName
+        public object Convert(object value, Type targetType, object parameter, string language)
         {
-            get => _taskName;
-            set { _taskName = value; OnPropertyChanged(); }
+            return (value is bool && (bool)value) ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public bool IsCompleted
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            get => _isCompleted;
-            set { _isCompleted = value; OnPropertyChanged(); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            return value is Visibility visibility && visibility == Visibility.Visible;
         }
     }
-
     public class BoolToTextDecorationsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -48,6 +35,9 @@ namespace Win10_Mobile_ToDoApp
             throw new NotImplementedException();
         }
     }
+    
+
+   
 
     public sealed partial class ToDoPage : Page
     {
@@ -130,6 +120,30 @@ namespace Win10_Mobile_ToDoApp
                     return result;
             }
             return null;
+        }
+    }
+    public class TaskItem : INotifyPropertyChanged
+    {
+        private string _taskName;
+        private bool _isCompleted;
+
+        public string TaskName
+        {
+            get => _taskName;
+            set { _taskName = value; OnPropertyChanged(); }
+        }
+
+        public bool IsCompleted
+        {
+            get => _isCompleted;
+            set { _isCompleted = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
