@@ -9,8 +9,8 @@ Adaptive design for Windows 10 Mobile screens.
 
 Screenshots
 ![Surface Book](Screenshots/surface_screenshot.png)
-![Emulator Main Screen](Screenshots/emulator_main_screen_screenshot.png)
 ![Emulator OS Starting](Screenshots/emulator_os_starting_screenshot.png)
+![Emulator Main Screen](Screenshots/emulator_main_screen_screenshot.png)
 ![Emulator Task Added](Screenshots/emulator_task_added_screenshot.png)
 
 Requirements
