@@ -1,49 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
-
   <Identity
-    Name="115be0ed-0381-421c-aa3a-4a553718e41e"
-    Publisher="CN=koshy"
+    Name="Win10MobileToDoApp"
+    Publisher="CN=YourPublisherName"
     Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="115be0ed-0381-421c-aa3a-4a553718e41e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+  <mp:PhoneIdentity PhoneProductId="7a9b3c2d-8f4a-4e2b-9c1f-5d6e7b8a3f1c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Win10-Mobile-ToDoApp</DisplayName>
-    <PublisherDisplayName>koshy</PublisherDisplayName>
+    <PublisherDisplayName>YourPublisherName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.10240.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="Win10_Mobile_ToDoApp.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Win10MobileToDoApp.App">
       <uap:VisualElements
         DisplayName="Win10-Mobile-ToDoApp"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Win10-Mobile-ToDoApp"
+        Square150x150Logo="Assets\Logo.png"
+        Square44x44Logo="Assets\SmallLogo.png"
+        Description="A simple ToDo app for Windows Phone 10"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
