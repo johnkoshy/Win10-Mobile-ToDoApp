@@ -1,9 +1,8 @@
 Windows 10 Mobile To-Do App
-A simple To-Do application built for Windows 10 Mobile using the Universal Windows Platform (UWP). This app allows users to add tasks, mark them as completed, and delete them, with a responsive UI optimized for mobile devices.
+A simple To-Do application built for Windows 10 Mobile using the Universal Windows Platform (UWP). This app allows users to add tasks, and delete them, with a responsive UI optimized for mobile devices.
 Features
 
 Add new tasks via a text input.
-Mark tasks as completed using checkboxes.
 Delete tasks with a button.
 Adaptive design for Windows 10 Mobile screens.
 
@@ -33,13 +32,12 @@ Run with F5.
 Project Structure
 
 ToDoPage.xaml: Defines the UI (text input, add button, task list).
-ToDoPage.xaml.cs: Handles task addition, completion, and deletion.
+ToDoPage.xaml.cs: Handles task addition, and deletion.
 Package.appxmanifest: Configures the app’s display name and platform settings.
 
 Usage
 
 Enter a task in the text box and click Add Task.
-Check a task’s checkbox to mark it as completed.
 Click Delete to remove a task.
 
 License
