@@ -30831,11 +30831,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\koshy\\source\\repos\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp.csproj",
+      "projectUniqueName": "C:\\Users\\koshy\\vstudio_prjs\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp.csproj",
       "projectName": "Win10-Mobile-ToDoApp",
-      "projectPath": "C:\\Users\\koshy\\source\\repos\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp.csproj",
+      "projectPath": "C:\\Users\\koshy\\vstudio_prjs\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp.csproj",
       "packagesPath": "C:\\Users\\koshy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\koshy\\source\\repos\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\obj\\",
+      "outputPath": "C:\\Users\\koshy\\vstudio_prjs\\Win10-Mobile-ToDoApp\\Win10-Mobile-ToDoApp\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

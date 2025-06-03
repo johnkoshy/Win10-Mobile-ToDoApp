@@ -11,17 +11,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- For heading -->
+            <RowDefinition Height="Auto"/>
+            <!-- For input section -->
             <RowDefinition Height="*"/>
+            <!-- For task list -->
         </Grid.RowDefinitions>
 
+        <!-- Heading -->
+        <TextBlock Grid.Row="0" 
+                   Text="To Do App" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   Margin="10,10,10,10" 
+                   HorizontalAlignment="Center"/>
+
         <!-- Input Section -->
-        <StackPanel Grid.Row="0" Margin="10">
+        <StackPanel Grid.Row="1" Margin="10">
             <TextBox x:Name="TaskInput" PlaceholderText="Enter a task" Margin="0,0,0,10"/>
             <Button Content="Add Task" Click="AddTask_Click" HorizontalAlignment="Stretch"/>
         </StackPanel>
 
         <!-- Task List -->
-        <ListView x:Name="TaskListView" Grid.Row="1" Margin="10">
+        <ListView x:Name="TaskListView" Grid.Row="2" Margin="10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>7a9b3c2d-8f4a-4e2b-9c1f-5d6e7b8a3f1c</PackageIdentityName>
     <PackageIdentityPublisher>CN=koshy</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,7 +18,7 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\AppX</LayoutDir>
     <RegisteredManifestChecksum>895632D6C187FD09CF52F6D7D35DD6278E06E8651354D2571FD2B06B756FA0E2</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>Win10MobileToDoApp_1.0.0.0_x86__w6shydvyprv4e</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>Win10MobileToDoApp_w6shydvyprv4e!App</RegisteredUserModeAppID>
@@ -27,16 +27,16 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-06-03T05:30:42.025</Modified>
+      <Modified>2025-06-03T05:59:31.630</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Win10-Mobile-ToDoApp.exe">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Win10-Mobile-ToDoApp.exe">
       <PackagePath>entrypoint\Win10-Mobile-ToDoApp.exe</PackagePath>
-      <Modified>2025-06-03T05:30:38.640</Modified>
+      <Modified>2025-06-03T05:59:31.111</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\koshy\.nuget\packages\microsoft.csharp\4.3.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -526,63 +526,63 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T16:45:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2025-06-03T05:10:02.465</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <Modified>2025-05-31T03:37:51.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Win10-Mobile-ToDoApp.xr.xml">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Win10-Mobile-ToDoApp.xr.xml">
       <PackagePath>Win10-Mobile-ToDoApp.xr.xml</PackagePath>
-      <Modified>2025-06-03T05:30:38.343</Modified>
+      <Modified>2025-06-03T05:59:30.865</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2025-06-03T05:30:38.377</Modified>
+      <Modified>2025-06-03T05:53:33.004</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2025-06-03T05:30:38.377</Modified>
+      <Modified>2025-06-03T05:59:30.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2020-12-01T21:22:06.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-06-03T05:30:41.481</Modified>
+      <Modified>2025-06-03T05:53:35.454</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\koshy\source\repos\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Core\Win10-Mobile-ToDoApp.exe">
+    <AppxPackagedFile Include="C:\Users\koshy\vstudio_prjs\Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp\bin\x86\Debug\Core\Win10-Mobile-ToDoApp.exe">
       <PackagePath>Win10-Mobile-ToDoApp.exe</PackagePath>
-      <Modified>2025-06-03T05:30:42.011</Modified>
+      <Modified>2025-06-03T05:59:31.621</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
