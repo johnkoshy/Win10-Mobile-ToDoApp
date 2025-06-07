@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.36101.20
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win10-Mobile-ToDoApp", "Win10-Mobile-ToDoApp\Win10-Mobile-ToDoApp.csproj", "{B6FCB45A-5EFD-49BC-B222-7AF18F43E66F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows-10-Mobile-To-Do-App", "Windows-10-Mobile-To-Do-App\Windows-10-Mobile-To-Do-App.csproj", "{B6FCB45A-5EFD-49BC-B222-7AF18F43E66F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
